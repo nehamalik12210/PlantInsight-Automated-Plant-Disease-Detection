@@ -4,6 +4,8 @@ PlantAI is a full-stack automated machine learning project designed to detect pl
 
 The model is trained on a comprehensive dataset and can classify **38 different classes** (including both healthy leaves and various diseases across multiple plant species).
 
+**Website Link** : https://plantinsight.onrender.com/ 
+
 ## Project Overview & Milestones
 
 This project was developed in 4 distinct milestones, progressing from raw data to a fully deployed web application:
