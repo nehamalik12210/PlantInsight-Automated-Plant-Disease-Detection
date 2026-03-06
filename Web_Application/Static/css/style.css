@@ -1,0 +1,134 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #f4f7f6;
+    min-height: 100vh;
+    color: #333;
+    background-image: url('https://img.pikbest.com/wp/202408/copy-space-dark-green-leaves-background-with-ample-a-captivating-nature-and-plant-concept_9934412.jpg!w700wp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+}
+h2 {
+    font-size: 48px;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+    animation: fadeInDown 2s ease-in-out;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: green;
+    animation: fadeIn 1.5s ease-in-out;
+}
+@keyframes fadeInDown {
+    0% { opacity: 0; transform: translateY(-20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    /* display: none; */
+}
+.result-section {
+    margin-top: 30px;
+    text-align: center;
+}
+.btn-upload-again {
+    margin-top: 20px;
+}
+.main-content {
+    flex: 1;
+    padding-bottom: 20px;
+}
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+}
+footer .footer-links a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+footer .footer-links a:hover {
+    text-decoration: underline;
+}
+
+/* Adjust navbar styles */
+/* Navbar Styles (Consistent for All Pages) */
+nav.navbar {
+    background-color: #004d4d !important; /* Ensure consistent dark teal */
+    color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999; /* Keeps navbar on top of other content */
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add shadow for separation */
+}
+
+.navbar-brand span {
+    font-size: 36px;
+    font-weight: bold;
+    color: #00b300; /* Bright green for "Plant" */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-nav .nav-link {
+    color: #FFC107 !important; /* Soft yellow for menu items */
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-left: 15px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #FFFFFF;
+    background-color: rgba(0, 128, 128, 0.2);
+    border-radius: 4px;
+}
+
+/* Fix for Navbar Alignment */
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* About Header Section */
+.about-header {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #007b5e;
+    color: white;
+    padding: 80px 0; /* Adjust padding to account for fixed navbar */
+    margin-top: 0;
+    text-align: center;
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* About Section */
+.about-section h2 {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2rem;
+    color: #007b5e;
+    font-weight: 600;
+    animation: slideInLeft 1s ease-out;
+}
+
