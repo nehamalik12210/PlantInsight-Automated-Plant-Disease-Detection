@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="about us, plant disease detection, team, mission, vision">
+    <meta name="author" content="Your Name or Organization">
+    <title>About Us - Automated Plant Disease Detection</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        /* Layout for the About Section */
+        .about-section {
+            display: flex;
+            height: 100vh; /* Full height of the viewport */
+            overflow: hidden; /* Prevents page scrolling */
+        }
+
+        .about-text {
+            flex: 1;
+            padding: 50px;
+            background-color: #ffffff; /* White background for the text */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for text container */
+        }
+
+        .about-text h2 {
+            color: #00b300;
+            margin-bottom: 20px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .about-text p {
+            color: #555555;
+            font-size: 18px;
+            line-height: 1.6;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .about-image {
+            flex: 1;
+            background: url("https://media.istockphoto.com/id/1181366400/photo/in-the-hands-of-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-on.jpg?s=612x612&w=0&k=20&c=jWUMrHgjMY9zQXsAwZFb1jfM6KxZE16-IXI1bvehjQM=") no-repeat center center;
+            background-size: cover; /* Ensures the image covers the right side entirely */
+            height: 100vh; /* Full height of the viewport */
+        }
+
+        /* Ensure full width */
+        .container-fluid {
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #004d4d;">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="{{ url_for('index') }}" style="padding-bottom: 5px;">
+                <span style="color:#00b300; font-family: 'Roboto', sans-serif; font-size: 30px; font-weight: 400; line-height: 1.1; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);">Plant</span>
+                <span style="color: #FFC107; font-family: 'Roboto', sans-serif; font-size: 30px; font-weight: 400; line-height: 1.1; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);">Insight</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}" style="color: #FFC107;">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}" style="color: #FFC107;">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('why_plantai') }}" style="color: #FFC107;">Why Plant Insight</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('plant_diseases') }}" style="color: #FFC107;">Plant Diseases</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('contact_us') }}" style="color: #FFC107;">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <div class="about-section">
+        <div class="welcome-gap"></div>
+        <div class="col-lg-6" style="background-color: white; padding: 20px;">
+            <h2 style="font-family: 'Times New Roman', Times, serif; font-size: 36px; color: #106910; margin-top: 0; text-shadow: none;">
+                Welcome to Plant Insight
+            </h2>  
+            <p style="font-family: 'Times New Roman', Times, serif; color: #030d01; font-size: 19px;">
+                At Plant Insight, we are committed to transforming agriculture using cutting-edge artificial intelligence. Our mission is to help farmers and agricultural professionals detect and manage plant diseases before they can spread and harm crops. With advanced AI and machine learning, we make plant disease detection smarter, faster, and more reliable.
+            </p>
+            <p style="font-family: 'Times New Roman', Times, serif; color: #030d01; font-size: 19px;">
+                The agricultural industry faces numerous challenges, including unpredictable weather and crop diseases. Our platform empowers farmers to make informed decisions with real-time insights into plant health, helping them optimize productivity and reduce losses.
+            </p>
+            <p style="font-family: 'Times New Roman', Times, serif; color: #030d01; font-size: 19px;">
+                Plant Insight is more than a tool—it’s a partner in revolutionizing agriculture and building a sustainable, thriving future for farming. Whether you’re a small-scale farmer or a large enterprise, we provide an accessible platform tailored to your needs.
+            </p>
+        </div>
+              
+        <div class="about-image"></div>
+    </div>
+</body>
+</html>

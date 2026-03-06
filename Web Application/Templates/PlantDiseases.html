@@ -1,0 +1,2491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease Information</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- External CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+          
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            background: url( 'https://i.pinimg.com/736x/ac/a6/2a/aca62ac050ce6983687064a732c3c356.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+ 
+        .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px 0;
+        padding-top: 80px; /* Adjusted for navbar height */
+    }
+
+        .disease-box {
+            padding-top: 30px;
+            font-family: 'Times New Roman', Times, serif;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            padding: 20px;
+            min-height: 300px; /* Increased height */
+        }
+
+        .text-content {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .image-container {
+            width: 250px; /* Increased width */
+            height: 250px; /* Increased height */
+            background-color: #eaeaea;
+            border-radius: 15px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .image-container img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover;
+            margin: 0 !important;
+            border: none !important;
+            border-radius: 0 !important;
+        }
+
+        .disease-name {
+            color: #007b5e;
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            margin-bottom: 10px;
+        }
+
+        .section h3 {
+            font-size: 1.2em;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .section p {
+            font-size: 1em;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <nav style="font-family: 'Times New Roman', Times, serif;">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"><nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="{{ url_for('index') }}" style="padding-bottom: 5px;">
+                <span style="
+                    color:#00b300; /* Bright green for 'Plant' */
+                    font-family: 'Roboto', sans-serif;
+                    font-size: 30px;
+                    font-weight: 400;
+                    line-height: 1.1;
+                    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+                ">Plant</span>
+                <span style="
+                    color: #FFC107; /* Softer Yellow for 'Insight' */
+                    font-family: 'Roboto', sans-serif;
+                    font-size: 30px;
+                    font-weight: 400; /* Matching 'Plant' thickness */
+                    line-height: 1.1;
+                    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+                ">Insight</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('about') }}">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('why_plantai') }}">Why Plant Insight</a>
+
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('plant_diseases') }}">Plant Diseases</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('contact_us') }}">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Potato - Late Blight -->
+        <div class="disease-box">
+            <div class="text-content">
+                <div class="disease-name">Potato - Late Blight</div>
+                <div class="section">
+                    <h3>Details</h3>
+                    <p>Late blight, caused by <em>Phytophthora infestans</em>, thrives in cool, wet conditions and spreads rapidly through infected plants and tubers. It is a globally significant disease and a major threat to potato and tomato crops.</p>
+                </div>
+                <div class="section">
+                    <h3>Symptoms</h3>
+                    <p>Water-soaked, dark green lesions on leaves, progressing to brown or black patches.<br>
+                       White, fuzzy fungal growth on the underside of leaves during humid conditions.<br>
+                       Brown, dry rot lesions on potato tubers, which later become soft and odorous.</p>
+                </div>
+                <div class="section">
+                    <h3>Treatment</h3>
+                    <p>Use resistant varieties of potatoes and follow crop rotation with non-host crops.<br>
+                       Destroy infected plant debris and volunteer plants.<br>
+                       Apply fungicides like chlorothalonil, mancozeb, or copper-based fungicides before or at the early signs of infection.</p>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="https://cropscience.bayer.co.uk/media/104571097/late-blight-potato-plant.jpg?width=401px&height=301px" alt="Potato - Late Blight Image">
+            </div>
+        </div>
+
+        <!-- Squash - Powdery Mildew -->
+        <div class="disease-box">
+            <div class="text-content">
+                <div class="disease-name">Squash - Powdery Mildew</div>
+                <div class="section">
+                    <h3>Details</h3>
+                    <p>Caused by <em>Podosphaera xanthii</em> or <em>Erysiphe cichoracearum</em>, powdery mildew affects squash and other cucurbits. The disease thrives in warm, dry weather with high humidity.</p>
+                </div>
+                <div class="section">
+                    <h3>Symptoms</h3>
+                    <p>White, powdery spots on leaves and stems that expand to cover large areas.<br>
+                       Premature yellowing and drying of leaves, reducing photosynthetic ability.<br>
+                       Stunted growth and reduced fruit yield.</p>
+                </div>
+                <div class="section">
+                    <h3>Treatment</h3>
+                    <p>Grow resistant cultivars and ensure proper air circulation by spacing plants appropriately.<br>
+                       Apply sulfur-based fungicides or systemic fungicides like myclobutanil.<br>
+                       Use biocontrol agents like <em>Ampelomyces quisqualis</em>.</p>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="https://i0.wp.com/savvygardening.com/wp-content/uploads/2021/09/powdery_mildew_on_squash_with_trellis.jpg?resize=600%2C800&ssl=1" alt="Squash - Powdery Mildew Image">
+            </div>
+        </div>
+
+        <!-- Strawberry - Leaf Scorch -->
+        <div class="disease-box">
+            <div class="text-content">
+                <div class="disease-name">Strawberry - Leaf Scorch</div>
+                <div class="section">
+                    <h3>Details</h3>
+                    <p>Leaf scorch, caused by <em>Diplocarpon earlianum</em>, primarily damages leaves, causing reduced vigor and fruit production. It is prevalent in humid, warm environments.</p>
+                </div>
+                <div class="section">
+                    <h3>Symptoms</h3>
+                    <p>Purple to reddish-brown spots on leaves that coalesce, forming necrotic areas.<br>
+                       Scorched appearance of leaves with darkened veins.<br>
+                       Early leaf drop, leading to reduced plant productivity.</p>
+                </div>
+                <div class="section">
+                    <h3>Treatment</h3>
+                    <p>Use resistant varieties and avoid overhead irrigation.<br>
+                       Apply fungicides like captan or thiophanate-methyl at the early stages of infection.<br>
+                       Remove infected plant debris to minimize overwintering pathogens.</p>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="https://cdn.mos.cms.futurecdn.net/XkvoUQ5ffAU8j5Fq8DK3Vf.jpg" alt="Strawberry - Leaf Scorch Image">
+            </div>
+        </div>
+
+        <!-- Tomato - Bacterial Spot -->
+        <div class="disease-box">
+            <div class="text-content">
+                <div class="disease-name">Tomato - Bacterial Spot</div>
+                <div class="section">
+                    <h3>Details</h3>
+                    <p>Caused by <em>Xanthomonas campestris pv. vesicatoria</em>, bacterial spot affects tomatoes and peppers. It spreads through seeds, water splashes, and contaminated equipment.</p>
+                </div>
+                <div class="section">
+                    <h3>Symptoms</h3>
+                    <p>Small, water-soaked spots on leaves, stems, and fruits.<br>
+                       Necrotic lesions that merge and cause defoliation.<br>
+                       Fruit blemishes that lower market value.</p>
+                </div>
+                <div class="section">
+                    <h3>Treatment</h3>
+                    <p>Use certified pathogen-free seeds and rotate crops with non-host plants.<br>
+                       Apply copper-based bactericides in combination with mancozeb for effective control.<br>
+                       Sanitize equipment and tools regularly.</p>
+                </div>
+            </div>
+            <div class="image-container">
+                <img src="https://www.growingproduce.com/wp-content/uploads/2019/08/bacterial_spot_tomato.jpg" alt="Tomato - Bacterial Spot Image">
+            </div>
+        </div>
+    
+    <!-- Tomato - Early Blight -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Tomato - Early Blight</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Early blight, caused by <em>Alternaria solani</em>, is a fungal disease that impacts tomato plants, especially during warm, humid conditions.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Circular, brown leaf spots with concentric rings (target spots).<br>
+                   Yellowing of leaves, beginning with the oldest leaves.<br>
+                   Dark, sunken lesions on stems and fruits.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Use resistant cultivars and implement crop rotation.<br>
+                   Apply fungicides like azoxystrobin or mancozeb early in the growing season.<br>
+                   Prune lower leaves to improve air circulation.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://apps.lucidcentral.org/pppw_v10/images/entities/tomato_early_blight_211/a_solani.jpg" alt="Tomato - Early Blight Image">
+        </div>
+    </div>  
+    
+    <!-- Tomato - Septoria Leaf Spot -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Tomato - Septoria Leaf Spot</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Caused by the fungus <em>Septoria lycopersici</em>, this disease primarily affects tomato leaves and thrives in moist, warm conditions.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Small, circular grayish spots with dark borders on leaves.<br>
+                   Premature defoliation, reducing yield and fruit quality.<br>
+                   The disease rarely affects fruit directly.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Remove and destroy infected leaves.<br>
+                   Apply fungicides like chlorothalonil or copper-based products.<br>
+                   Use drip irrigation to avoid wetting foliage.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://extension.umd.edu/sites/extension.umd.edu/files/styles/optimized/public/2021-05/hgic_veg_septoria%20leaf%20spot1_1600.jpg?itok=JcaVf2-g" alt="Tomato - Septoria Leaf Spot Image">
+        </div>
+    </div>
+
+    <!-- Maize - Cercospora Leaf Spot (Gray Leaf Spot) -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Maize - Cercospora Leaf Spot (Gray Leaf Spot)</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Caused by <em>Cercospora zeae-maydis</em>, gray leaf spot is a fungal disease that reduces photosynthetic ability and yield in maize.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Long, narrow gray or tan lesions on leaves.<br>
+                   Severe infections lead to leaf blight and plant death.<br>
+                   Reduced kernel fill and overall yield loss.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Grow resistant hybrids and practice crop rotation.<br>
+                   Apply foliar fungicides like pyraclostrobin or propiconazole during early infection.<br>
+                   Minimize residue to reduce overwintering fungal spores.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/12/Gray_leaf_spot_Cercospora_zeae-maydis_5465607.png" alt="Maize - Cercospora Leaf Spot Image">
+        </div>
+    </div>
+
+    <!-- Grape - Black Rot -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Grape - Black Rot</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Black rot, caused by <em>Guignardia bidwellii</em>, is a fungal disease that thrives in warm, humid environments.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Brown, circular lesions with black fruiting bodies on leaves.<br>
+                   Mummified berries that are black and shriveled.<br>
+                   Lesions on shoots and tendrils.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Prune and remove mummified berries and infected vines.<br>
+                   Apply fungicides like myclobutanil or captan during key growth stages.<br>
+                   Ensure good air circulation through proper canopy management.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://www.mpi.govt.nz/assets/On-page-images/Protection-and-response/Pest-and-Diseases/horticulture/Black-rot-1__ResizedImageWzQyNCwyOTNd.jpeg" alt="Grape - Black Rot Image">
+        </div>
+    </div>
+
+    <!-- Orange - Huanglongbing (Citrus Greening) -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Orange - Huanglongbing (Citrus Greening)</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Caused by <em>Candidatus Liberibacter asiaticus</em>, Huanglongbing (HLB) is a bacterial disease transmitted by the Asian citrus psyllid and is devastating to citrus production.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Yellowing of leaves with blotchy, asymmetrical patterns.<br>
+                   Small, misshapen, and bitter fruits.<br>
+                   Premature fruit drop and eventual tree decline.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Remove and destroy infected trees to limit disease spread.<br>
+                   Apply systemic insecticides to control psyllid populations.<br>
+                   Support research for resistant rootstocks and integrated pest management strategies.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://www.plantdiseases.org/sites/default/files/plant_disease/images/0279.jpg" alt="Orange - Huanglongbing (Citrus Greening)">
+        </div>
+    </div>
+
+    <!-- Peach - Bacterial Spot -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Peach - Bacterial Spot</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Caused by <em>Xanthomonas campestris pv. pruni</em>, this disease affects peaches and nectarines, particularly during wet conditions.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Small, water-soaked spots on leaves that turn dark brown.<br>
+                   Cracked and pitted lesions on fruit, reducing marketability.<br>
+                   Premature leaf drop and weakened trees.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Use resistant peach varieties and space trees to improve airflow.<br>
+                   Apply copper-based bactericides during early growth stages.<br>
+                   Avoid overhead irrigation to limit pathogen spread.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://cdn.mos.cms.futurecdn.net/AA8tPA7mq5RNPw2J3rT3VH.jpg" alt="Peach - Bacterial Spot">
+        </div>
+    </div>
+
+    <!-- Pepper - Bacterial Spot -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Pepper - Bacterial Spot</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Similar to the bacterial spot in tomatoes, this disease, caused by <em>Xanthomonas campestris pv. vesicatoria</em>, severely affects pepper plants.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Dark, water-soaked spots on leaves and fruits.<br>
+                   Leaves turn yellow and drop prematurely.<br>
+                   Reduced yield due to defoliation and fruit damage.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Use disease-resistant varieties and certified seeds.<br>
+                   Apply copper fungicides with mancozeb for effective control.<br>
+                   Remove infected plant debris and avoid working in wet fields.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://extension.wvu.edu/files/50d2bf3d-125f-4b45-9c03-487959bd8344/893x595?cb=0862b40bec913b574f1f05f79f2805c7" alt="Pepper - Bacterial Spot">
+        </div>
+    </div>
+
+    <!-- Corn (Maize) - Northern Leaf Blight -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Corn (Maize) - Northern Leaf Blight</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Northern Leaf Blight, caused by the fungus <em>Setosphaeria turcica</em> (formerly <em>Exserohilum turcicum</em>), is a major disease affecting maize, particularly in areas with humid and moderate to warm climates.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Long, elliptical, gray-green or tan lesions on leaves.<br>
+                   Severe infections can cause complete leaf blighting and early death of plants.<br>
+                   Reduced kernel size and yield due to poor photosynthesis.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Plant resistant hybrids adapted to the local environment.<br>
+                   Use foliar fungicides, such as strobilurins or triazoles, when lesions first appear.<br>
+                   Rotate crops and manage plant debris to limit fungal overwintering.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://extension.sdstate.edu/sites/default/files/2019-08/W-00358-01-northern-corn-leaf-blight-symptoms.jpg" alt="Corn (Maize) - Northern Leaf Blight">
+        </div>
+    </div>
+
+    <!-- Apple - Apple Scab -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Apple - Apple Scab</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Apple scab, caused by the fungus <em>Venturia inaequalis</em>, is one of the most economically important diseases of apples, reducing both fruit yield and quality.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Olive-green to brown velvety spots on leaves, which turn yellow and drop prematurely.<br>
+                   Scabby, rough lesions on fruits, causing cracking and deformities.<br>
+                   Dark lesions may appear on young twigs in severe infections.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Plant scab-resistant apple cultivars whenever possible.<br>
+                   Apply fungicides, such as mancozeb or captan, during critical growth stages (e.g., pre-bloom to early fruit development).<br>
+                   Prune trees to improve air circulation and remove fallen leaves to reduce fungal inoculum.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://fff.hort.purdue.edu/wp-content/uploads/2022/04/4-1024x681.jpg" alt="Apple - Apple Scab">
+        </div>
+    </div>
+
+    <!-- Apple - Black Rot -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Apple - Black Rot</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Black rot, caused by <em>Botryosphaeria obtusa</em>, is a fungal disease that affects apples, causing fruit decay, leaf spots, and limb cankers.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Purple spots on leaves, which turn brown and may form a frogeye appearance.<br>
+                   Black, rotting areas on fruit with concentric rings.<br>
+                   Cankers on twigs and branches, causing dieback.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Prune and remove infected limbs, fruit, and leaf debris.<br>
+                   Apply fungicides such as thiophanate-methyl during early bloom and pre-harvest stages.<br>
+                   Maintain tree vigor with proper fertilization and irrigation.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://www.researchgate.net/publication/373166181/figure/fig1/AS:11431281181941231@1692255891213/Apple-black-rot-figure-1-shows-apple-black-rot-while-preprocessing-an-infected-leaf.jpg" alt="Apple - Black Rot">
+        </div>
+    </div>
+
+    <!-- Apple - Cedar Apple Rust -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Apple - Cedar Apple Rust</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Cedar apple rust, caused by the fungus <em>Gymnosporangium juniperi-virginianae</em>, requires both apple and cedar (or juniper) trees to complete its life cycle. It is common in areas where these species coexist.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Yellow-orange spots on apple leaves that later develop black dots (fungal structures).<br>
+                   Premature defoliation and reduced fruit quality.<br>
+                   Reddish-brown galls on cedar trees during wet weather.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Avoid planting apples near cedar or juniper trees.<br>
+                   Apply fungicides like myclobutanil or mancozeb during the apple tree’s bloom period.<br>
+                   Remove galls from cedar trees before spores are released in the spring.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://hort.extension.wisc.edu/files/2014/11/CedarAppleRust_apple.png" alt="Apple - Cedar Apple Rust">
+        </div>
+    </div>
+
+    <!-- Cherry - Powdery Mildew -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Cherry - Powdery Mildew</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Powdery mildew on cherries is caused by <em>Podosphaera clandestina</em> and thrives in warm, dry weather with high humidity.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>White, powdery fungal growth on the undersides of leaves.<br>
+                   Distorted, stunted leaves and shoots.<br>
+                   Reduced fruit set and smaller, misshapen cherries.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Apply sulfur-based or systemic fungicides (e.g., myclobutanil or trifloxystrobin) at the first sign of infection.<br>
+                   Prune overcrowded branches to improve air circulation.<br>
+                   Remove and destroy infected leaves and plant debris.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://extension.usu.edu/planthealth/ipm/images/agricultural/fruit/powderymildew-cherry.jpg" alt="Cherry - Powdery Mildew">
+        </div>
+    </div>
+
+    <!-- Grape - Esca (Black Measles) -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Grape - Esca (Black Measles)</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Esca, also known as Black Measles, is a complex disease caused by a group of fungal pathogens (<em>Phaeomoniella chlamydospora</em> and others). It primarily affects grapevines and causes vine decline.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Interveinal chlorosis on leaves, creating a tiger-stripe pattern.<br>
+                   Sunken, black lesions on berries that may ooze sap.<br>
+                   Stunted growth, dieback of shoots, and eventual vine death.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Prune infected vines and remove diseased wood to reduce fungal spread.<br>
+                   Apply fungicides like fludioxonil as a preventive measure.<br>
+                   Avoid injuries during pruning and training to limit fungal entry points.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://content.peat-cloud.com/w400/esca-grape-1665660551.jpg" alt="Grape - Esca (Black Measles)">
+        </div>
+    </div>
+
+    <!-- Tomato - Tomato Mosaic Virus -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Tomato - Tomato Mosaic Virus</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>The Tomato Mosaic Virus (ToMV) is a highly contagious virus that infects tomato plants and other solanaceous crops. It spreads through contaminated tools, hands, and soil.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Mottled, yellow-green patches on leaves.<br>
+                   Distorted, curling, or stunted leaves and reduced fruit set.<br>
+                   Fruit may have discoloration and uneven ripening.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Plant resistant tomato varieties and use certified disease-free seeds.<br>
+                   Sterilize tools and avoid handling plants when they are wet.<br>
+                   Remove and destroy infected plants immediately to prevent the spread.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoqI0OQvi3XIzjqXnABcPlFtuyAFWt6agCrw&s" alt="Tomato - Tomato Mosaic Virus">
+        </div>
+    </div>
+
+    <!-- Tomato - Tomato Yellow Leaf Curl Virus -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Tomato - Tomato Yellow Leaf Curl Virus</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Caused by Begomovirus and transmitted by whiteflies, this viral disease is a major problem in tropical and subtropical tomato-growing regions.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Yellowing and upward curling of leaves.<br>
+                   Stunted plant growth and reduced fruit yield.<br>
+                   Increased susceptibility to secondary infections.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Use whitefly-resistant tomato varieties and implement effective pest control measures.<br>
+                   Apply insecticides like imidacloprid to control whitefly populations.<br>
+                   Install physical barriers, such as insect-proof nets, to reduce whitefly entry.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://content.peat-cloud.com/w400/tomato-yellow-leaf-curl-virus-tomato-1575981863.jpg" alt="Tomato - Tomato Yellow Leaf Curl Virus">
+        </div>
+    </div>
+
+    <!-- Tomato - Spider Mites (Two-Spotted Spider Mite) -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Tomato - Spider Mites (Two-Spotted Spider Mite)</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Spider mites (<em>Tetranychus urticae</em>) are tiny arachnids that infest tomato plants, especially during hot, dry conditions. They feed on plant sap, causing damage to leaves and reducing yields.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Stippling or speckling on leaves, which later turn yellow or bronze.<br>
+                   Fine webbing on the underside of leaves.<br>
+                   Stunted plant growth and reduced fruit production.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Use miticides such as abamectin or spiromesifen.<br>
+                   Introduce natural predators like lady beetles or predatory mites (<em>Phytoseiulus persimilis</em>).<br>
+                   Regularly spray plants with water to dislodge mites and reduce populations.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://media.sciencephoto.com/c0/21/97/24/c0219724-800px-wm.jpg" alt="Tomato - Spider Mites (Two-Spotted Spider Mite)">
+        </div>
+    </div>
+
+    <!-- Tomato - Target Spot -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Tomato - Target Spot</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Target spot, caused by the fungus <em>Corynespora cassiicola</em>, is a disease that affects tomato plants, leading to defoliation and fruit blemishes.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Brown lesions on leaves with concentric rings, resembling a target.<br>
+                   Defoliation of plants, exposing fruits to sunburn.<br>
+                   Lesions on fruits appear dark and sunken.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Apply fungicides such as azoxystrobin or chlorothalonil.<br>
+                   Rotate crops and remove plant debris to limit fungal survival.<br>
+                   Use resistant tomato varieties and improve air circulation in the field.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0PgrBxAUW2z0o74zhesAzqIVebKgykDYLdQ&s" alt="Tomato - Target Spot">
+        </div>
+    </div>
+
+    <!-- Tomato - Leaf Mold -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Tomato - Leaf Mold</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Leaf mold is caused by the fungus <em>Cladosporium fulvum</em> (also known as <em>Passalora fulva</em>). It primarily affects greenhouse-grown tomatoes but can also occur in field crops under humid conditions.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Yellow spots on the upper surfaces of leaves, corresponding to olive-green to brown fungal growth underneath.<br>
+                   Leaves curl, wither, and drop prematurely.<br>
+                   Fruits may develop black, leathery spots, particularly near the stem.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Apply fungicides like chlorothalonil or copper-based sprays.<br>
+                   Increase ventilation in greenhouses and avoid overhead watering.<br>
+                   Use resistant varieties and remove infected leaves promptly.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://cdn.mos.cms.futurecdn.net/HUNQy44pDSpeJQ9jaTKdLK.jpg" alt="Tomato - Leaf Mold">
+        </div>
+    </div>
+
+    <!-- Potato - Early Blight -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Potato - Early Blight</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Early blight in potatoes is caused by the fungus <em>Alternaria solani</em>. It thrives in warm, humid conditions and primarily affects foliage, stems, and tubers, leading to yield losses if left unmanaged.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Dark brown, irregular spots with concentric rings on older leaves, often surrounded by yellow halos.<br>
+                   Lesions on stems that may girdle and weaken the plant.<br>
+                   Dark, sunken lesions on tubers, sometimes extending into the flesh, creating a corky texture.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Use resistant potato varieties where available.<br>
+                   Apply fungicides like chlorothalonil, mancozeb, or systemic options such as azoxystrobin.<br>
+                   Practice crop rotation and remove infected plant debris.<br>
+                   Avoid overhead irrigation and ensure proper plant spacing for good air circulation.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://extension.usu.edu/planthealth/ipm/images/ezplug/uploads/factsheet/early-blight/Early-Blight-1.jpg" alt="Potato - Early Blight">
+        </div>
+    </div>
+
+    <!-- Tomato - Late Blight -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Tomato - Late Blight</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Late blight in tomatoes is caused by the oomycete <em>Phytophthora infestans</em>. It is a highly destructive disease that spreads rapidly under cool, wet conditions and can devastate crops if untreated.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Large, water-soaked lesions on leaves that turn brown and necrotic, often with a pale green border.<br>
+                   White, powdery fungal growth on the undersides of infected leaves during humid weather.<br>
+                   Dark, firm lesions on stems and fruits, leading to fruit rot and plant collapse.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Use fungicides like chlorothalonil, mancozeb, or systemic options such as metalaxyl or fluopicolide.<br>
+                   Plant resistant varieties and ensure good air circulation around plants.<br>
+                   Remove and destroy infected plant material immediately.<br>
+                   Avoid overhead irrigation and monitor weather conditions to apply fungicides preventively.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://content.peat-cloud.com/w400/tomato-late-blight-tomato-1556463954.jpg" alt="Tomato - Late Blight">
+        </div>
+    </div>
+
+    <!-- Grape - Leaf Blight (Isariopsis Leaf Spot) -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Grape - Leaf Blight (Isariopsis Leaf Spot)</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Leaf blight, also known as Isariopsis leaf spot, is caused by the fungus <em>Isariopsis clavispora</em>. It is a foliar disease that affects grapevines, particularly in humid and warm climates, leading to reduced photosynthesis and yield losses.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Small, angular, reddish-brown to dark brown spots on leaves.<br>
+                   Lesions may enlarge and coalesce, causing large necrotic areas.<br>
+                   Severely infected leaves may curl, dry out, and drop prematurely, reducing the plant's vigor.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Apply fungicides like mancozeb or copper-based formulations during the early stages of infection.<br>
+                   Prune and remove infected leaves to improve air circulation and reduce fungal inoculum.<br>
+                   Maintain proper spacing between vines to reduce humidity levels.<br>
+                   Use resistant grape varieties where available.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://source.roboflow.com/dMjGrME8SnaLLAZzZe5d/Hbbc5mnTOoeLodGz8Fgc/thumb.jpg" alt="Grape - Leaf Blight">
+        </div>
+    </div>
+
+    <!-- Corn (Maize) - Common Rust -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Corn (Maize) - Common Rust</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Common rust in corn is caused by the fungal pathogen <em>Puccinia sorghi</em>. It thrives in moderate temperatures (16–25°C or 60–77°F) and high humidity, spreading through windborne spores over long distances.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Small, round to oval pustules on leaves, initially yellowish-green, later turning reddish-brown.<br>
+                   Pustules may erupt and release rust-colored spores.<br>
+                   Severe infections can cause leaf yellowing, drying, and reduced photosynthesis, leading to yield losses.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Use resistant maize hybrids to minimize susceptibility.<br>
+                   Apply fungicides like propiconazole, azoxystrobin, or pyraclostrobin if rust severity increases.<br>
+                   Practice crop rotation and remove crop debris to reduce overwintering spores.<br>
+                   Monitor fields regularly during conditions favorable for rust development.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://cropprotectionnetwork.org/image?s=%2Fimg%2Fhttp%2Fgeneral%2FCommon-rust-Daren-Mueller-20.jpg%2F36fa21f79dcca7af9081b496e9f449bc.jpg&h=0&w=316&fit=contain" alt="Corn - Common Rust">
+        </div>
+    </div>
+
+    <!-- Wheat - Rust -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Wheat - Rust</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Rust is a fungal disease caused by <em>Puccinia spp.</em>, including leaf rust, stem rust, and stripe rust. It thrives in humid conditions and can significantly reduce wheat yields.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Orange-brown pustules on leaves, stems, and sheaths.<br>
+                   Yellowing and early senescence of leaves.<br>
+                   Severe infections weaken plants and reduce grain quality.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Plant resistant wheat varieties and practice crop rotation.<br>
+                   Apply fungicides such as propiconazole or tebuconazole.<br>
+                   Remove volunteer wheat and grassy weeds that harbor the fungus.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://cs-assets.bayer.com/is/image/bayer/leaf-rust-fungicide-crop-protection" alt="Wheat - Rust Image">
+        </div>
+    </div>
+    
+    <!-- Rice - Blast -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Rice - Blast</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Rice blast, caused by the fungus <em>Magnaporthe oryzae</em>, is one of the most destructive rice diseases worldwide, thriving in wet, warm conditions.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Spindle-shaped lesions with gray centers and brown margins on leaves.<br>
+                   Neck rot during the flowering stage, leading to grain loss.<br>
+                   Dark, sunken lesions on nodes, resulting in stem breakage.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Use resistant rice varieties and avoid excessive nitrogen fertilization.<br>
+                   Apply systemic fungicides such as tricyclazole or isoprothiolane.<br>
+                   Ensure proper water management to reduce leaf wetness duration.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0bpttOIZlXbI6bP_wQOBxxQ2YAWW8CudvsQ&s" alt="Rice - Blast Image">
+        </div>
+    </div>
+
+    <!-- Cucumber - Downy Mildew -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Cucumber - Downy Mildew</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Downy mildew, caused by <em>Pseudoperonospora cubensis</em>, is a highly destructive fungal disease that thrives in cool, wet conditions and can decimate cucumber crops.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Yellow, angular spots on leaves bordered by veins.<br>
+                   Grayish-purple fungal growth on the underside of leaves during humid conditions.<br>
+                   Premature leaf drop and reduced fruit quality.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Plant resistant cucumber varieties and practice crop rotation.<br>
+                   Use fungicides such as chlorothalonil or mancozeb at the first signs of infection.<br>
+                   Ensure proper spacing to promote air circulation and reduce humidity.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://news.clemson.edu/wp-content/uploads/2022/01/DownyMildew.jpg" alt="Cucumber - Downy Mildew Image">
+        </div>
+    </div>
+
+    <!-- Carrot - Alternaria Leaf Blight -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Carrot - Alternaria Leaf Blight</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Alternaria leaf blight, caused by <em>Alternaria dauci</em>, is a common fungal disease affecting carrot crops worldwide, particularly in warm, humid conditions.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Small, brown spots on leaves that enlarge and form dark, irregular lesions.<br>
+                   Yellowing and premature leaf dieback.<br>
+                   Reduced root growth and market quality.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Use resistant carrot cultivars and ensure proper crop spacing.<br>
+                   Apply fungicides like azoxystrobin or chlorothalonil early in the growing season.<br>
+                   Remove infected debris and practice crop rotation with non-host crops.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr3bVyD57D4ptIbYzCq6Omfxpmy5UDMt_Yag&s" alt="Carrot - Alternaria Leaf Blight Image">
+        </div>
+    </div>
+
+    <!-- Onion - Purple Blotch -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Onion - Purple Blotch</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Purple blotch, caused by <em>Alternaria porri</em>, is a fungal disease that significantly impacts onion crops, especially in humid conditions.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Small, water-soaked spots on leaves that expand into purple, elliptical lesions.<br>
+                   Yellowing and drying of leaves from the tip downwards.<br>
+                   Severely infected plants exhibit reduced bulb size and yield.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Plant disease-resistant onion varieties and practice crop rotation.<br>
+                   Apply fungicides like mancozeb or azoxystrobin at the first sign of infection.<br>
+                   Avoid overhead irrigation to reduce leaf wetness.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://www.canr.msu.edu/uploads/images/purple-blotch-onions-2_2.jpg" alt="Onion - Purple Blotch Image">
+        </div>
+    </div>
+
+    <!-- Pepper - Anthracnose -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Pepper - Anthracnose</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Anthracnose, caused by <em>Colletotrichum spp.</em>, is a fungal disease that affects pepper plants, reducing both fruit yield and quality.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Dark, sunken lesions on fruits with concentric rings of salmon-colored spores.<br>
+                   Premature fruit drop and discoloration.<br>
+                   Leaf spots that may coalesce, causing defoliation.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Use disease-free seeds and resistant varieties.<br>
+                   Apply fungicides like copper oxychloride or chlorothalonil during fruit development.<br>
+                   Remove infected fruits and debris to minimize fungal spread.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZwHrba2Xe5zdsgJFMBwneN5irQSVJwYt-UA&s" alt="Pepper - Anthracnose Image">
+        </div>
+    </div>
+
+    <!-- Banana - Panama Disease (Fusarium Wilt) -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Banana - Panama Disease (Fusarium Wilt)</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Panama disease, caused by <em>Fusarium oxysporum f. sp. cubense</em>, is a devastating fungal disease that affects banana plants, particularly the Cavendish variety.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Yellowing of older leaves, progressing to wilting and browning.<br>
+                   Longitudinal splitting of the pseudostem.<br>
+                   Reddish-brown discoloration of vascular tissues.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Plant disease-resistant banana varieties where available.<br>
+                   Implement strict quarantine measures to prevent disease spread.<br>
+                   Use soil solarization and crop rotation with non-host plants.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://cdn.mos.cms.futurecdn.net/bD9ggsm7ErMNwB5n8T9D9k.jpg" alt="Banana - Panama Disease Image">
+        </div>
+    </div>
+
+    <!-- Sugarcane - Red Rot -->
+    <div class="disease-box">
+        <div class="text-content">
+            <div class="disease-name">Sugarcane - Red Rot</div>
+            <div class="section">
+                <h3>Details</h3>
+                <p>Red rot, caused by <em>Colletotrichum falcatum</em>, is a fungal disease that severely impacts sugarcane yield and quality, particularly in warm and humid regions.</p>
+            </div>
+            <div class="section">
+                <h3>Symptoms</h3>
+                <p>Yellowing and drying of leaves, starting from the margins.<br>
+                   Red-colored patches with white spots inside the stem when split open.<br>
+                   Foul odor due to decaying tissues.</p>
+            </div>
+            <div class="section">
+                <h3>Treatment</h3>
+                <p>Use red rot-resistant sugarcane varieties.<br>
+                   Destroy infected canes and plant debris to reduce inoculum.<br>
+                   Apply fungicides like carbendazim or thiram as a preventive measure.</p>
+            </div>
+        </div>
+        <div class="image-container">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhIVpKZ39u1fBeFczIdgxVkRtCfQWPdl6_odlLflXkPmDhC_PGQ0NtDl4qdInr0bvHvpQe6ZBRjJ5r38Xt6V857GRFkmzm0XdaxbiqM2KvQ8-iNC4cni2hgAK86l1VvS_kOsn1W4xxeHlE/w640-h360-rw/red+rot+of+sugarcane.jpg=w409-h230-p-k-no-nu" alt="Sugarcane - Red Rot Image">
+        </div>
+    </div>
+    
+    <!-- Tomato - Verticillium Wilt -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Tomato - Verticillium Wilt</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Verticillium wilt, caused by <em>Verticillium dahliae</em> or <em>Verticillium albo-atrum</em>, is a soil-borne fungal disease that affects tomatoes and other crops in warm climates.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Yellowing of lower leaves, progressing upward.<br>
+               Wilting during the day that improves at night.<br>
+               Vascular discoloration inside the stem when cut open.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Plant resistant tomato varieties and rotate crops with non-host plants.<br>
+               Avoid planting in contaminated soil; use raised beds with clean soil.<br>
+               Solarize soil to reduce pathogen levels.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://cdn.mos.cms.futurecdn.net/Bjs2uTYBCsbBtW4nzEPAZ3.jpg" alt="Tomato - Verticillium Wilt Image">
+    </div>
+</div>
+
+    <!-- Potato - Common Scab -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Potato - Common Scab</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Common scab, caused by <em>Streptomyces scabies</em>, is a bacterial disease that affects potato tubers, reducing their market quality.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Rough, corky lesions on potato skin, which may be raised or pitted.<br>
+               Lesions can coalesce, affecting larger areas of the tuber.<br>
+               The disease does not affect the internal flesh of the potato.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Plant disease-resistant potato varieties and avoid planting in alkaline soils.<br>
+               Maintain soil moisture during tuber formation to reduce infection risk.<br>
+               Rotate crops with cereals or legumes to minimize pathogen buildup.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://projectblue.blob.core.windows.net/media/Default/Potatoes/Disease%20and%20defects/Common%20Scab%20resized.jpg" alt="Potato - Common Scab Image">
+    </div>
+</div>
+
+    <!-- Lettuce - Downy Mildew -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Lettuce - Downy Mildew</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Downy mildew in lettuce, caused by <em>Bremia lactucae</em>, thrives in cool, moist conditions and can cause significant crop losses.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Yellow spots on the upper leaf surface, which later turn brown.<br>
+               White, fluffy fungal growth on the underside of leaves.<br>
+               Premature leaf drop and stunted plant growth.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Plant resistant lettuce varieties and avoid overhead irrigation.<br>
+               Apply fungicides like mancozeb or metalaxyl at the first sign of infection.<br>
+               Rotate crops and remove infected plant debris to minimize disease spread.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHtICwCq7H78ESsodSM2Zpfx-AQzu0735-cg&s" alt="Lettuce - Downy Mildew Image">
+    </div>
+</div>
+
+    <!-- Mango - Powdery Mildew -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Mango - Powdery Mildew</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Powdery mildew in mango, caused by <em>Oidium mangiferae</em>, affects flowers, fruits, and leaves, particularly in warm, humid conditions.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>White, powdery fungal growth on leaves, flowers, and fruits.<br>
+               Flower drop and poor fruit set.<br>
+               Small, deformed fruits with cracked skin in severe infections.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Spray sulfur-based fungicides or systemic fungicides like triazoles.<br>
+               Prune infected branches and improve orchard ventilation.<br>
+               Avoid overcrowding and ensure proper plant spacing.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQq0ItHOqCQUxtaU9930uPWhZEg8T5jIOu9cQ&s" alt="Mango - Powdery Mildew Image">
+    </div>
+</div>
+
+    <!-- Cotton - Boll Rot -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Cotton - Boll Rot</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Boll rot in cotton is caused by a variety of pathogens, including fungi such as <em>Aspergillus niger</em> and <em>Fusarium spp.</em>, and bacteria. It significantly reduces fiber quality and yield.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Dark, sunken lesions on cotton bolls, which may ooze sap.<br>
+               Cotton fibers inside the boll become discolored and decayed.<br>
+               Bolls may fail to open properly or drop prematurely.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Plant resistant cotton varieties and ensure proper crop rotation.<br>
+               Apply fungicides like carbendazim or copper oxychloride during early boll formation.<br>
+               Avoid waterlogging and ensure good field drainage.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://eu-images.contentstack.com/v3/assets/bltdd43779342bd9107/bltae8374ef0afe5621/638f2d9442134f78f0d84d21/Kemerait-cotton-boll-rot-1-a.jpg" alt="Cotton - Boll Rot Image">
+    </div>
+</div>
+
+    <!-- Soybean - Phytophthora Root Rot -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Soybean - Phytophthora Root Rot</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Phytophthora root rot, caused by <em>Phytophthora sojae</em>, is a serious soil-borne disease that affects soybean plants, especially in poorly drained soils.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Yellowing and wilting of plants, starting at the base.<br>
+               Dark brown discoloration of roots and stem, leading to plant death.<br>
+               Stunted growth and poor pod development in infected plants.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Use resistant soybean varieties and seed treatments with metalaxyl or mefenoxam.<br>
+               Improve field drainage to reduce waterlogging.<br>
+               Rotate crops with cereals or other non-host plants.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://soybeanresearchinfo.com/wp-content/uploads/2019/03/soybeanresearch-Phytophthora-Root-Stem-Rot-3.jpg" alt="Soybean - Phytophthora Root Rot Image">
+    </div>
+</div>
+
+    <!-- Grapes - Powdery Mildew -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Grapes - Powdery Mildew</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Powdery mildew in grapes, caused by <em>Uncinula necator</em>, is a fungal disease that affects grapevines and thrives in warm, dry conditions with high humidity.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>White, powdery fungal growth on leaves, stems, and fruit.<br>
+               Distorted and stunted shoots and leaves.<br>
+               Reduced fruit quality, with berries cracking or failing to ripen.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Prune grapevines to improve air circulation and reduce humidity.<br>
+               Apply sulfur-based or systemic fungicides like myclobutanil at the first signs of infection.<br>
+               Avoid overwatering and ensure proper spacing between vines.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDPVJIITNfzymQdfoTamzqvBxEeYE3QPI6mQ&s" alt="Grapes - Powdery Mildew Image">
+    </div>
+</div>
+
+    <!-- Cabbage - Black Rot -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Cabbage - Black Rot</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Black rot, caused by the bacterium <em>Xanthomonas campestris pv. campestris</em>, affects cruciferous crops like cabbage, kale, and cauliflower, particularly in warm and humid conditions.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Yellow V-shaped lesions starting at the leaf edges.<br>
+               Blackening of veins and vascular tissues.<br>
+               Stunted growth and head formation in severe cases.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Use certified disease-free seeds and resistant cabbage varieties.<br>
+               Remove infected plants and plant debris to reduce pathogen spread.<br>
+               Apply copper-based bactericides during early stages of infection.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://www.infonet-biovision.org/sites/default/files/styles/full_image_popup/public/plant_health/pestsdiseasesweeds/952.400x400_0_0.jpeg?itok=QTNeglZ1" alt="Cabbage - Black Rot Image">
+    </div>
+</div>
+
+    <!-- Peanut - Leaf Spot -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Peanut - Leaf Spot</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Leaf spot in peanuts, caused by <em>Cercospora arachidicola</em> (early leaf spot) or <em>Cercosporidium personatum</em> (late leaf spot), is a fungal disease that thrives in warm, humid conditions.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Small, circular brown spots on leaves with a yellow halo.<br>
+               Lesions coalesce, causing defoliation and reduced photosynthesis.<br>
+               Severe infections lead to yield losses and poor pod quality.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Plant resistant peanut varieties and rotate crops with non-host plants.<br>
+               Apply fungicides like chlorothalonil or azoxystrobin early in the season.<br>
+               Remove infected plant debris to minimize fungal spread.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://extension.okstate.edu/fact-sheets/images/foliar-diseases-of-peanuts/1.jpg" alt="Peanut - Leaf Spot Image">
+    </div>
+</div>
+
+    <!-- Chili - Anthracnose -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Chili - Anthracnose</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Anthracnose in chili, caused by <em>Colletotrichum spp.</em>, is a fungal disease that affects fruit quality and yield, especially in wet and humid environments.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Sunken, dark lesions on fruits with concentric rings of spores.<br>
+               Fruits may become shriveled, discolored, or fall prematurely.<br>
+               Leaves and stems may also show small, dark spots.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Plant resistant chili varieties and use disease-free seeds.<br>
+               Apply fungicides like carbendazim or copper-based compounds during early fruiting.<br>
+               Remove infected plant debris and avoid overhead irrigation.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://scx2.b-cdn.net/gfx/news/2016/newchilipath.jpg" alt="Chili - Anthracnose Image">
+    </div>
+</div>
+
+    <!-- Apple - Fire Blight -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Apple - Fire Blight</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Fire blight, caused by <em>Erwinia amylovora</em>, is a bacterial disease that affects apple and pear trees, causing severe damage to blossoms, branches, and fruit.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Blackened, wilted blossoms and shoots that appear scorched.<br>
+               Curled, water-soaked leaves and brown lesions on branches.<br>
+               Tree dieback, especially during warm and wet conditions.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Prune infected branches 8-12 inches below visible symptoms and disinfect pruning tools between cuts.<br>
+               Apply copper-based bactericides during bloom.<br>
+               Avoid excessive nitrogen fertilization and maintain good tree health.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_wuDvIli9Yn2EPGtkCz4BTO9eIyf1Onwcwg&s" alt="Apple - Fire Blight Image">
+    </div>
+</div>
+
+    <!-- Tomato - Fusarium Wilt -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Tomato - Fusarium Wilt</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Fusarium wilt in tomatoes, caused by <em>Fusarium oxysporum f. sp. lycopersici</em>, is a soil-borne fungal disease that affects tomato plants, especially in warm soils.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Yellowing of lower leaves, wilting of one side of the plant.<br>
+               Vascular discoloration of the stem, turning brown.<br>
+               Stunted growth and poor fruit set.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Use resistant tomato varieties and practice crop rotation.<br>
+               Solarize the soil to kill fungal spores before planting.<br>
+               Avoid over-irrigation and ensure good field drainage.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://omo-oss-image.thefastimg.com/portal-saas/pg2024041911260041575/cms/image/429f09ca-be5b-4a35-a19f-c1e3c8dad5c5.jpeg" alt="Tomato - Fusarium Wilt Image">
+    </div>
+</div>
+
+    <!-- Peach - Brown Rot -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Peach - Brown Rot</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Brown rot, caused by <em>Monilinia fructicola</em>, is a fungal disease that affects peaches, plums, and cherries, causing fruit decay and crop loss.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Soft, brown lesions on fruit, with concentric rings of fungal spores.<br>
+               Fruit rapidly rots, turning mushy and emitting a foul odor.<br>
+               Infected fruit often shrivels and turns brown.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Prune infected branches and remove infected fruit from trees.<br>
+               Apply fungicides like captan or myclobutanil during flowering.<br>
+               Ensure good air circulation to reduce humidity around fruit.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQuUxZQmxsqWZeMMKLJk2eLlPdI8msIrK6Dg&s" alt="Peach - Brown Rot Image">
+    </div>
+</div>
+
+    <!-- Cabbage - Clubroot -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Cabbage - Clubroot</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Clubroot, caused by the soil-borne pathogen <em>Plasmodiophora brassicae</em>, affects cabbage and other cruciferous crops, leading to stunted growth and poor yield.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Swollen, distorted roots resembling a "club" shape.<br>
+               Yellowing and wilting of leaves, especially in hot weather.<br>
+               Reduced head size and poor-quality cabbage.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Use resistant varieties and practice crop rotation with non-host crops.<br>
+               Apply lime to reduce soil acidity, as the pathogen prefers acidic conditions.<br>
+               Improve soil drainage and avoid waterlogging.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTkAp6IEaplPsI8_riNroMC0o83Jmi3NC_ZSg&s" alt="Cabbage - Clubroot Image">
+    </div>
+</div>
+
+    <!-- Strawberry - Grey Mold (Botrytis) -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Strawberry - Grey Mold (Botrytis)</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Grey mold, caused by <em>Botrytis cinerea</em>, is a fungal disease that primarily affects strawberries during wet, humid conditions, causing fruit rot and yield loss.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Soft, brown, mushy spots on ripe strawberries, often covered with greyish fungal growth.<br>
+               Infected fruit becomes shriveled and moldy.<br>
+               The disease can spread quickly, affecting large portions of the crop.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Ensure proper spacing for good air circulation and avoid excessive moisture.<br>
+               Apply fungicides like fenhexamid or pyrimethanil during the fruit ripening stage.<br>
+               Remove and destroy infected fruits to reduce fungal spread.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMzw_cqDTz4PE9PASPQNHeyr4zYn_fQqI7Ug&s" alt="Strawberry - Grey Mold Image">
+    </div>
+</div>
+
+    <!-- Carrot - Root Rot -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Carrot - Root Rot</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Root rot in carrots is caused by various soil-borne pathogens, including <em>Fusarium spp.</em> and <em>Rhizoctonia solani</em>, leading to decay of the roots and stunted growth.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Dark, sunken lesions on the carrot root with a soft, mushy texture.<br>
+               Roots may have an unpleasant smell due to decaying tissue.<br>
+               Infected carrots may turn brown and lose their market quality.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Ensure well-drained soil and avoid over-watering.<br>
+               Practice crop rotation with non-host crops.<br>
+               Remove and destroy infected roots to limit pathogen spread.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://safiorganics.co.ke/wp-content/uploads/2024/05/488313_0_En_34-1_Fig7_HTML.webp" alt="Carrot - Root Rot Image">
+    </div>
+</div>
+
+    <!-- Cucumber - Angular Leaf Spot -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Cucumber - Angular Leaf Spot</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Angular leaf spot in cucumbers, caused by <em>Pseudomonas syringae</em>, is a bacterial disease that causes significant damage to cucumber leaves, reducing photosynthesis and yield.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Angular, water-soaked spots on the leaves with dark borders.<br>
+               Spots eventually turn brown and dry out.<br>
+               Severe infections result in leaf drop, stunted growth, and poor fruit development.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Use resistant cucumber varieties and rotate crops with non-host plants.<br>
+               Apply copper-based bactericides or streptomycin for control.<br>
+               Remove and destroy infected leaves to reduce pathogen spread.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://extension.umn.edu/sites/extension.umn.edu/files/angular-leaf-spot-1.JPG" alt="Cucumber - Angular Leaf Spot Image">
+    </div>
+</div>
+
+    <!-- Potato - Black Leg -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Potato - Black Leg</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Black leg, caused by the bacterium <em>Erwinia carotovora</em>, is a soil-borne disease that affects potato plants, leading to rotting of stems and tubers.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Dark, water-soaked lesions at the base of stems.<br>
+               Tubers show soft rot, turning brown or black, with a foul odor.<br>
+               Stunted plant growth and premature wilting of leaves.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Use disease-free seed potatoes and practice crop rotation.<br>
+               Avoid excessive watering, especially in poorly drained soils.<br>
+               Remove infected plants and tubers to reduce bacterial spread.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmc4tjCuU3e_oBR9GsgQRJQSFMN3pFNwGOrg&s" alt="Potato - Black Leg Image">
+    </div>
+</div>
+
+    <!-- Cauliflower - Downy Mildew -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Cauliflower - Downy Mildew</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Downy mildew in cauliflower, caused by <em>Peronospora parasitica</em>, is a fungal disease that affects leaves and curds, especially in cool, damp conditions.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Yellowing and curling of older leaves, starting at the tips.<br>
+               White, downy fungal growth on the undersides of leaves.<br>
+               Reduced curd quality and stunted plant growth in severe infections.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Use resistant cauliflower varieties and avoid overhead irrigation.<br>
+               Apply fungicides like metalaxyl or chlorothalonil at the first signs of infection.<br>
+               Remove infected leaves to prevent further spread.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://apps.lucidcentral.org/pppw_v10/images/entities/cabbage_downy_mildew_192/downymildew1.jpg" alt="Cauliflower - Downy Mildew Image">
+    </div>
+</div>
+
+    <!-- Sweet Corn - Northern Corn Leaf Blight -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Sweet Corn - Northern Corn Leaf Blight</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Northern corn leaf blight, caused by the fungus <em>Exserohilum turcicum</em>, is a significant disease affecting sweet corn, especially during wet and humid conditions.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Long, grayish-green lesions on leaves, which turn brown with a tan center.<br>
+               Reduced leaf area, causing poor photosynthesis and stunted ear development.<br>
+               The disease spreads quickly under warm, wet conditions.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Plant resistant varieties and rotate with non-grass crops.<br>
+               Apply fungicides like azoxystrobin or propiconazole at the first sign of infection.<br>
+               Improve field drainage to minimize moisture buildup.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://vegetablegrowersnews.com/wp-content/uploads/2017/08/Sweet-corn-leaf-blight.jpg" alt="Sweet Corn - Northern Corn Leaf Blight Image">
+    </div>
+</div>
+
+    <!-- Papaya - Papaya Ringspot Virus (PRSV) -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Papaya - Papaya Ringspot Virus (PRSV)</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Papaya ringspot virus (PRSV) is a viral disease that severely affects papaya plants, causing distorted growth, reduced yield, and premature fruit drop.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Yellowish rings or spots on leaves and fruits.<br>
+               Malformed, smaller fruits and stunted plant growth.<br>
+               Plants infected with PRSV may not bear fruit or may produce deformed fruits.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Use PRSV-resistant papaya varieties.<br>
+               Control aphid vectors that transmit the virus.<br>
+               Remove infected plants to limit the spread of the virus in the field.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://ars.els-cdn.com/content/image/3-s2.0-B9780123744104007317-gr1.jpg" alt="Papaya - Papaya Ringspot Virus Image">
+    </div>
+</div>
+
+    <!-- Cabbage - Downy Mildew -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Cabbage - Downy Mildew</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Downy mildew in cabbage, caused by <em>Peronospora parasitica</em>, affects leaves and curds, leading to poor-quality cabbage heads and reduced yield.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Yellow to light green lesions on upper leaf surfaces.<br>
+               White, downy fungal growth on the underside of affected leaves.<br>
+               Premature leaf drop and stunted plant growth in severe infections.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Apply fungicides such as metalaxyl or phosphorous acid at the first sign of infection.<br>
+               Ensure proper spacing to improve air circulation.<br>
+               Rotate crops with non-host species and remove infected plants.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://apps.lucidcentral.org/pppw_v10/images/entities/cabbage_downy_mildew_192/downymildew1.jpg" alt="Cabbage - Downy Mildew Image">
+    </div>
+</div>
+
+    <!-- Grape - Downy Mildew -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Grape - Downy Mildew</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Downy mildew in grapes, caused by <em>Plasmopara viticola</em>, is a fungal disease that affects grapevines, particularly in wet, humid conditions.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Yellowish lesions on the upper side of leaves with white, downy growth on the underside.<br>
+               Affected leaves may curl and fall off, reducing photosynthesis.<br>
+               White, fuzzy growth may also appear on grapes, affecting their quality.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Use resistant grape varieties and ensure proper vine spacing.<br>
+               Apply fungicides like copper-based products or mefenoxam early in the season.<br>
+               Remove infected plant material and practice good vineyard hygiene.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://worldofplants.ai/wp-content/uploads/2024/03/word-image-81178-1.jpeg" alt="Grape - Downy Mildew Image">
+    </div>
+</div>
+
+    <!-- Cucumber - Fusarium Wilt -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Cucumber - Fusarium Wilt</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Fusarium wilt in cucumbers, caused by <em>Fusarium oxysporum f. sp. cucumerinum</em>, is a soil-borne fungal disease that affects cucumber plants, causing wilting and death.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Wilting and yellowing of leaves, starting from the lower leaves.<br>
+               Vascular discoloration inside the stem, which turns brown.<br>
+               Infected plants may die rapidly, especially in warm weather.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Use resistant cucumber varieties and practice crop rotation.<br>
+               Solarize the soil or apply fungicides to reduce fungal spores.<br>
+               Remove infected plants and debris to prevent the spread of the disease.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://veggiescout.ca.uky.edu/sites/veggiescout.ca.uky.edu/files/inline-images/32a%20Fusarium%20wilt%20watermelon%20vine%20xs%20crpd%20%28DLangston%2C%20UGA%29.jpg" alt="Cucumber - Fusarium Wilt Image">
+    </div>
+</div>
+
+    <!-- Apple - Powdery Mildew -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Apple - Powdery Mildew</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Powdery mildew in apples, caused by <em>Podosphaera leucotricha</em>, is a fungal disease that affects apple trees, especially during cool, dry conditions.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>White, powdery fungal growth on leaves, shoots, and fruit.<br>
+               Distorted leaves and stunted growth in infected plants.<br>
+               Fruit may develop russeting or deformities in severe infections.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Apply sulfur-based fungicides or systemic fungicides like myclobutanil.<br>
+               Prune affected branches to improve air circulation.<br>
+               Remove and destroy infected plant material to reduce fungal spread.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTV0yoXgeGFMuihaBwS_v8av_P5nNZS4pLrtA&s" alt="Apple - Powdery Mildew Image">
+    </div>
+</div>
+
+    <!-- Tomato - Blossom End Rot -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Tomato - Blossom End Rot</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Blossom end rot in tomatoes is a physiological disorder caused by calcium deficiency, particularly when watering practices are inconsistent during fruit development.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Dark, sunken spots at the blossom end of the fruit.<br>
+               Affected areas become leathery, blackened, and can decay.<br>
+               Fruit may be deformed and unmarketable due to the lesions.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Ensure consistent watering and avoid both drought and overwatering.<br>
+               Apply calcium-rich fertilizers or soil amendments.<br>
+               Maintain proper soil pH levels and good drainage to enhance calcium uptake.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://blog.organicbazar.net/wp-content/uploads/2022/11/BLOSSOM-END-ROT-tomato-tomato-plant-disease-tomato-disease-plant-min.jpg" alt="Tomato - Blossom End Rot Image">
+    </div>
+</div>
+
+    <!-- Cucumber - Bacterial Wilt -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Cucumber - Bacterial Wilt</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Bacterial wilt in cucumbers, caused by <em>Erwinia tracheiphila</em>, is a soil-borne bacterial disease that spreads through cucumber vines, resulting in wilting and plant death.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Yellowing and wilting of leaves, particularly in hot, dry conditions.<br>
+               Plants may wilt suddenly, and infected vines have a rapid, sharp decline.<br>
+               Bacteria cause blockage of water transport tissues, leading to death.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Remove and destroy infected plants immediately to reduce bacterial spread.<br>
+               Use resistant cucumber varieties and practice crop rotation.<br>
+               Control cucumber beetles, which are the primary vectors of the bacteria.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0wUP905cegfcr9MyRMFRGzL7QUQSSfBxDgw&s" alt="Cucumber - Bacterial Wilt Image">
+    </div>
+</div>
+
+    <!-- Strawberry - Red Stele Root Rot -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Strawberry - Red Stele Root Rot</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Red stele root rot, caused by <em>Phytophthora fragariae</em>, is a soil-borne fungal disease that affects strawberry plants, especially in poorly drained soils.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Red to brown discoloration of the root core, often extending to the crown.<br>
+               Yellowing of leaves and wilting of plants, especially during hot weather.<br>
+               Reduced plant vigor and fruit yield.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Use resistant strawberry varieties and ensure proper field drainage.<br>
+               Rotate crops with non-host species and practice good soil management.<br>
+               Apply fungicides like mefenoxam or phosphorous acid to reduce pathogen spread.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2HJ_e5NCR438RfVqgxsR5bx51xdGIPOuyuw&s" alt="Strawberry - Red Stele Root Rot Image">
+    </div>
+</div>
+
+    <!-- Tomato - Damping-Off -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Tomato - Damping-Off</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Damping-off, caused by several soil-borne fungi such as <em>Rhizoctonia solani</em> and <em>Fusarium spp.</em>, affects tomato seedlings and can lead to significant loss during germination and early growth.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Seedlings fall over and die, with their stems turning brown and water-soaked.<br>
+               Infected plants show wilting and a rapid collapse before or shortly after emergence.<br>
+               Affected areas may show fungal growth on the stem base.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Ensure well-drained soil and avoid over-watering in seedling trays.<br>
+               Use fungicide-treated seeds or soil treatments.<br>
+               Provide proper spacing for seedlings and reduce humidity in the growing area.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7dgtCzG9RyrJSz3eeN066VE0q5UIlNoD3kw&s" alt="Tomato - Damping-Off Image">
+    </div>
+</div>
+
+    <!-- Pepper - Verticillium Wilt -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Pepper - Verticillium Wilt</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Verticillium wilt, caused by <em>Verticillium dahliae</em>, is a fungal disease that affects pepper plants, causing wilting, yellowing, and stunted growth.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Wilting and yellowing of lower leaves, which progresses upward.<br>
+               Vascular discoloration inside the stem (brown or black streaks).<br>
+               Infected plants may die prematurely, especially in hot weather.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Use resistant pepper varieties and practice crop rotation.<br>
+               Avoid planting peppers in soil previously infected by Verticillium wilt.<br>
+               Use solarization to reduce fungal spores in the soil.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://ucanr.edu/blogs/napanewspaper/blogfiles/86383.jpg" alt="Pepper - Verticillium Wilt Image">
+    </div>
+</div>
+
+    <!-- Peach - Peach Leaf Curl -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Peach - Peach Leaf Curl</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Peach leaf curl, caused by the fungus <em>Taphrina deformans</em>, is a common disease of peaches and nectarines, particularly in cooler climates.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Folding, puckering, and distortion of leaves, which turn reddish or yellow.<br>
+               Affected leaves may eventually fall off, reducing the plant's vigor.<br>
+               Fruit production is often reduced in infected trees.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Apply fungicides like copper-based products or lime sulfur before bud break.<br>
+               Prune and remove infected leaves and twigs.<br>
+               Select resistant peach varieties and avoid planting in areas prone to high humidity.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://images.squarespace-cdn.com/content/v1/611c48d97aac4e4796d12f67/ea34767c-6137-4ca1-a036-0bd3b1e59eea/peach-leaf-curl-780x520.jpg" alt="Peach - Peach Leaf Curl Image">
+    </div>
+</div>
+
+    <!-- Corn - Southern Corn Leaf Blight -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Corn - Southern Corn Leaf Blight</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Southern corn leaf blight, caused by <em>Exserohilum turcicum</em>, is a fungal disease that affects corn, particularly in warm, wet climates.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Long, narrow lesions on leaves with a grayish-green center and yellowish margins.<br>
+               Rapid spread of lesions under moist conditions.<br>
+               Severe infections can lead to complete defoliation, reducing yield.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Plant resistant corn hybrids and rotate with non-grass crops.<br>
+               Apply fungicides like azoxystrobin or propiconazole during early infection stages.<br>
+               Improve field drainage and reduce excessive irrigation to limit fungal growth.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Cochliobolus_heterostrophus.jpg/1200px-Cochliobolus_heterostrophus.jpg" alt="Corn - Southern Corn Leaf Blight Image">
+    </div>
+</div>
+
+    <!-- Cabbage - Alternaria Leaf Spot -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Cabbage - Alternaria Leaf Spot</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Alternaria leaf spot, caused by <em>Alternaria brassicae</em>, is a fungal disease that affects cabbage, leading to reduced plant vigor and poor head formation.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Round, dark brown spots with concentric rings on leaves.<br>
+               Yellow halos around the lesions.<br>
+               Severe infections cause premature leaf drop and reduce plant photosynthesis.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Apply fungicides such as chlorothalonil or mancozeb at the first signs of infection.<br>
+               Remove and destroy infected leaves and plant debris.<br>
+               Practice crop rotation and avoid overhead irrigation to reduce humidity.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ1_ou4E08malpVEOj4dikMU35J1-4TlUbH6w&s" alt="Cabbage - Alternaria Leaf Spot Image">
+    </div>
+</div>
+
+    <!-- Watermelon - Fusarium Wilt -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Watermelon - Fusarium Wilt</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Fusarium wilt in watermelons, caused by <em>Fusarium oxysporum</em>, is a soil-borne fungal disease that causes wilting, yellowing, and eventual death of the plant.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Wilting of one side of the plant, especially in hot weather.<br>
+               Yellowing of leaves and stunted growth.<br>
+               Dark streaks inside the stem, indicating vascular tissue damage.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Use Fusarium-resistant watermelon varieties.<br>
+               Rotate crops with non-host species like legumes.<br>
+               Apply soil fumigation or solarization to reduce fungal spores.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaloAlHPy6f00iMNLxujJu6Q6Z4a0L1k59cg&s" alt="Watermelon - Fusarium Wilt Image">
+    </div>
+</div>
+
+    <!-- Pineapple - Heart Rot -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Pineapple - Heart Rot</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Heart rot in pineapples, caused by <em>Fusarium subglutinans</em>, is a fungal disease that affects the central core of the pineapple, leading to poor fruit quality.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Softening and discoloration of the central core.<br>
+               Affected areas develop a foul smell, signaling rotting.<br>
+               Infected fruits may become mushy and unfit for consumption.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Use disease-free planting material and avoid overcrowding.<br>
+               Apply fungicides to protect young plants.<br>
+               Ensure proper drainage to avoid waterlogging, which favors fungal growth.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRCYFUrkM_iXUsnR7KZGKdtgj_wWeXMPNYwA&s" alt="Pineapple - Heart Rot Image">
+    </div>
+</div>
+
+    <!-- Lemon - Citrus Greening (Huanglongbing) -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Lemon - Citrus Greening (Huanglongbing)</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Citrus greening, also known as Huanglongbing (HLB), is a bacterial disease caused by <em>Candidatus Liberibacter asiaticus</em>, transmitted by the Asian citrus psyllid, affecting citrus trees like lemons and oranges.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Yellowing of leaves with blotchy patterns, often asymmetrical.<br>
+               Bitter, misshapen fruits that are small and often fall prematurely.<br>
+               Overall decline in tree health and reduced fruit production.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Remove and destroy infected trees to limit the spread of the disease.<br>
+               Control psyllid populations using insecticides or biological agents.<br>
+               Support research into resistant rootstocks and integrated pest management strategies.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Huanglongbing.jpg/220px-Huanglongbing.jpg" alt="Lemon - Citrus Greening Image">
+    </div>
+</div>
+
+    <!-- Banana - Panama Disease -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Banana - Panama Disease</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Panama disease, caused by the soil-borne fungus <em>Fusarium oxysporum</em>, affects bananas, particularly the Cavendish variety, leading to wilt and plant death.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Yellowing and wilting of the leaves, starting from the lower leaves.<br>
+               Vascular discoloration in the stem, turning brown or reddish.<br>
+               Infected plants eventually collapse, and fruit production is halted.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Use disease-free planting material and avoid moving contaminated soil.<br>
+               Practice crop rotation with non-host plants like legumes.<br>
+               Improve soil drainage and consider resistant banana varieties.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiQHviwgXe0cbT8je6jUdog3dWTJsPGCeGWQ&s" alt="Banana - Panama Disease Image">
+    </div>
+</div>
+
+    <!-- Spinach - Downy Mildew -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Spinach - Downy Mildew</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Downy mildew in spinach, caused by <em>Peronospora effusa</em>, is a fungal disease that affects the leaves, causing reduced photosynthesis and plant vigor.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Yellow to white angular lesions on the upper leaf surface.<br>
+               White, downy fungal growth on the underside of leaves.<br>
+               Premature leaf drop and stunted plant growth in severe infections.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Apply fungicides such as metalaxyl or copper-based products.<br>
+               Space plants to improve air circulation and reduce humidity.<br>
+               Remove infected plant debris and practice crop rotation.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVTXWX6B1hJtujW0x45zK2JmlXcvkDQriKfA&s" alt="Spinach - Downy Mildew Image">
+    </div>
+</div>
+
+    <!-- Pineapple - Leaf Spot -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Pineapple - Leaf Spot</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Leaf spot in pineapples, caused by the fungus <em>Diplodia pinea</em>, affects the leaves of the pineapple plant, leading to reduced photosynthesis and overall plant health.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Dark, sunken lesions with concentric rings on leaves.<br>
+               Lesions may coalesce and cause large patches of necrotic tissue.<br>
+               Affected plants may exhibit stunted growth and reduced fruit yield.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Apply fungicides such as copper-based products at the first sign of infection.<br>
+               Prune and remove infected leaves to prevent further spread.<br>
+               Improve air circulation by spacing plants appropriately.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://www.picturethisai.com/wiki-image/1080/440237051250475009.jpeg" alt="Pineapple - Leaf Spot Image">
+    </div>
+</div>
+
+    <!-- Carrot - Alternaria Leaf Blight -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Carrot - Alternaria Leaf Blight</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Alternaria leaf blight, caused by the fungus <em>Alternaria dauci</em>, affects the leaves of carrot plants, leading to reduced photosynthesis and stunted growth.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Dark, circular lesions with concentric rings on the leaves.<br>
+               Yellowing and browning of leaf edges, causing early defoliation.<br>
+               Severely infected plants may show reduced root size and quality.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Apply fungicides such as mancozeb or chlorothalonil during early infection stages.<br>
+               Rotate crops with non-host crops to reduce pathogen build-up.<br>
+               Remove and destroy infected plant material to prevent further spread.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBYdM18z6pVyFZdLPYP4zos-bIaTQ5HjZpmA&s" alt="Carrot - Alternaria Leaf Blight Image">
+    </div>
+</div>
+
+    <!-- Grapevine - Black Rot -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Grapevine - Black Rot</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Black rot, caused by <em>Guignardia bidwellii</em>, is a fungal disease that affects grapevines, especially in areas with high humidity and rain.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Dark, sunken lesions on leaves, stems, and fruit.<br>
+               Mummified berries that are black and shriveled.<br>
+               Lesions on shoots and tendrils, leading to dieback of vines.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Prune and remove mummified berries and infected vines.<br>
+               Apply fungicides like myclobutanil or captan during critical growth stages.<br>
+               Ensure good air circulation through proper canopy management.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzPlUKQmxZlDimb8NfYIYM_WgN1hKvx9SB6A&s" alt="Grapevine - Black Rot Image">
+    </div>
+</div>
+
+    <!-- Avocado - Root Rot (Phytophthora) -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Avocado - Root Rot (Phytophthora)</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Root rot in avocado, caused by the fungus <em>Phytophthora cinnamomi</em>, is a major disease that affects the root system, leading to wilting and poor fruit yield.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Yellowing of leaves and poor growth.<br>
+               Wilting and dropping of leaves, especially during hot, dry conditions.<br>
+               Darkened, rotting roots that are soft and mushy.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Ensure well-drained soil and avoid over-watering.<br>
+               Use resistant rootstocks and practice proper irrigation management.<br>
+               Apply fungicides like metalaxyl or phosphorous acid during early stages of infection.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://www.thedailygarden.us/uploads/4/5/4/9/45493619/published/flagging.jpg?1582214634" alt="Avocado - Root Rot Image">
+    </div>
+</div>
+
+    <!-- Mango - Anthracnose -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Mango - Anthracnose</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Anthracnose, caused by the fungus <em>Colletotrichum gloeosporioides</em>, affects mango trees, especially during the flowering and fruiting stages, causing lesions on the fruit and leaves.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Dark, sunken lesions on mango fruits and leaves.<br>
+               Lesions expand and lead to fruit rot and drop.<br>
+               Affected trees may exhibit reduced fruit set and early fruit drop.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Apply fungicides like copper-based products or azoxystrobin during the flowering stage.<br>
+               Prune affected branches and remove infected fruit.<br>
+               Ensure good air circulation in the orchard and avoid overhead irrigation.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://apps.lucidcentral.org/pppw_v10/images/entities/mango_anthracnose_009/mangoshoot.jpg" alt="Mango - Anthracnose Image">
+    </div>
+</div>
+
+    <!-- Pomegranate - Anthracnose -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Pomegranate - Anthracnose</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Anthracnose in pomegranate, caused by the fungus <em>Colletotrichum gloeosporioides</em>, is a common fungal disease that affects fruit and leaves, leading to rot and reduced yield.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Dark, sunken lesions on fruits, especially near the crown.<br>
+               Affected fruits develop a soft, mushy texture and are prone to premature splitting.<br>
+               Leaves may also exhibit yellowing and dieback.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Apply fungicides like chlorothalonil or mancozeb during the flowering and fruit-setting stages.<br>
+               Prune and remove infected plant material.<br>
+               Ensure good air circulation and avoid excessive moisture on fruits.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://blog.fasal.co/wp-content/uploads/2023/06/1ccef-blog-image-standard-sizing-500400-15.jpg" alt="Pomegranate - Anthracnose Image">
+    </div>
+</div>
+
+    <!-- Plum - Plum Curculio -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Plum - Plum Curculio</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Plum curculio, caused by the insect <em>Conotrachelus nenuphar</em>, is a significant pest that damages plum trees by feeding on the fruit, leading to deformities and rot.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Small, crescent-shaped scars on the fruit's skin where the curculio has fed.<br>
+               Fruit may develop rot or become deformed.<br>
+               Infested fruit often drops prematurely from the tree.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Use insecticides like imidacloprid or malathion to control curculio populations.<br>
+               Apply during the fruit development stage when curculios are most active.<br>
+               Remove and destroy infested fruit to reduce pest pressure.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsHMEQHUGGcT8ydG6MIBSiPOI1SCiOM-OXZg&s" alt="Plum - Plum Curculio Image">
+    </div>
+</div>
+
+    <!-- Cherry - Brown Rot -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Cherry - Brown Rot</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Brown rot, caused by the fungus <em>Monilinia fructicola</em>, is a fungal disease that affects cherries, leading to fruit decay and significant loss in quality and yield.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Soft, brown lesions on cherries that expand rapidly.<br>
+               Affected fruit often becomes mummified and shriveled.<br>
+               Fungal spores may spread to healthy fruit, leading to further decay.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Apply fungicides such as thiophanate-methyl or captan during the flowering and fruiting stages.<br>
+               Prune and remove infected fruit and branches to reduce fungal spread.<br>
+               Ensure good air circulation around the trees and avoid excessive moisture on the fruit.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvd78f4e-3h-wXLz25-5O2KB4SXOvcnmEasw&s" alt="Cherry - Brown Rot Image">
+    </div>
+</div>
+
+    <!-- Apricot - Shot Hole Disease -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Apricot - Shot Hole Disease</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Shot hole disease in apricots, caused by the fungus <em>Cercospora circinata</em>, results in circular lesions on leaves and can cause reduced fruit yield and quality.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Small, round lesions with a characteristic “shot hole” appearance on leaves.<br>
+               Leaves may turn yellow and drop prematurely.<br>
+               The disease can also cause cankers on branches, leading to dieback in severe cases.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Apply fungicides such as chlorothalonil or mancozeb to control fungal growth.<br>
+               Prune and remove infected plant material to reduce disease spread.<br>
+               Practice crop rotation and avoid overhead irrigation.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZdqRj9gaPCFLmXXyrDsr2AjeN0o-L8-vrKA&s" alt="Apricot - Shot Hole Disease Image">
+    </div>
+</div>
+
+    <!-- Guava - Guava Wilt -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Guava - Guava Wilt</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Guava wilt, caused by the fungus <em>Fusarium solani</em>, is a soil-borne disease that affects guava trees, causing rapid decline in tree health and reduced fruit yield.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Wilting of leaves, starting with the lower leaves.<br>
+               Yellowing and browning of leaves, with premature leaf drop.<br>
+               Vascular discoloration in the stem, turning brown or black.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Ensure well-drained soil and avoid waterlogging.<br>
+               Use resistant guava varieties and practice crop rotation.<br>
+               Apply fungicides like carbendazim or fosetyl-Al to reduce fungal growth in the soil.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://blog.fasal.co/wp-content/uploads/2023/06/a4132-blog-image-standard-sizing-500400-2023-01-23t115958.229.jpg" alt="Guava - Guava Wilt Image">
+    </div>
+</div>
+
+    <!-- Fig - Fig Mosaic Virus -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Fig - Fig Mosaic Virus</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Fig mosaic virus is a viral disease affecting fig trees, causing mottled leaf patterns, stunted growth, and reduced fruit production.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Chlorotic spots or mosaic patterns on leaves, which may become distorted.<br>
+               Reduced leaf size and chlorosis leading to premature leaf drop.<br>
+               Fruit may be smaller and misshapen, reducing its marketability.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Remove and destroy infected plants to reduce the spread of the virus.<br>
+               Use virus-free planting material and control insect vectors.<br>
+               Avoid planting figs in areas with a high risk of viral spread.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://ipm.ucanr.edu/PMG/IMAGES/F/D-FI-FIGV-FO.003a.jpg" alt="Fig - Fig Mosaic Virus Image">
+    </div>
+</div>
+
+    <!-- Olive - Olive Knot Disease -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Olive - Olive Knot Disease</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Olive knot disease, caused by the bacterium <em>Pseudomonas savastanoi</em>, is a bacterial infection that leads to the formation of galls or knots on olive trees, affecting growth and productivity.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Small, swollen knots or galls on branches and stems.<br>
+               Affected areas may eventually crack open and ooze a sticky substance.<br>
+               The disease can reduce the plant's vigor and fruit yield over time.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Prune and remove infected branches to prevent the spread of the bacteria.<br>
+               Apply copper-based bactericides to control bacterial growth.<br>
+               Maintain good tree health and avoid wounding trees during pruning or harvesting.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS50xU_Tv404WjN-MigOAbhQuqk6mS_Yj0wNA&s" alt="Olive - Olive Knot Disease Image">
+    </div>
+</div>
+
+    <!-- Peach - Brown Rot Blossom Blight -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Peach - Brown Rot Blossom Blight</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Brown rot blossom blight, caused by <em>Monilinia fructicola</em>, affects peach blossoms, leading to the death of flowers and subsequent fruit loss.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Blossoms turn brown and shrivel, often before they open.<br>
+               Affected flowers may ooze a sticky, brown substance.<br>
+               Infected fruit may develop brown lesions that expand, causing rot.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Apply fungicides like thiophanate-methyl or mancozeb during the bloom period.<br>
+               Prune and remove infected blossoms and fruit.<br>
+               Avoid overhead irrigation and maintain proper tree spacing to reduce humidity.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqay5-8TuExa1RkdFtg3X_lz1p7duQqtwVog&s" alt="Peach - Brown Rot Blossom Blight Image">
+    </div>
+</div>
+
+    <!-- Passionfruit - Fusarium Wilt -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Passionfruit - Fusarium Wilt</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Fusarium wilt, caused by <em>Fusarium oxysporum</em>, is a fungal disease that affects passionfruit, causing wilting and death of vines.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Yellowing of leaves, starting from the lower leaves.<br>
+               Wilting of vines, especially during warm, dry conditions.<br>
+               Vascular discoloration in the stem when cut open, turning brown or dark red.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Use resistant varieties of passionfruit.<br>
+               Apply fungicides like metalaxyl or phosphorous acid to control the fungus.<br>
+               Practice crop rotation with non-host plants to reduce soil inoculum.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpQjoDxvgjtar7ei56BjgyyXTL06K6Wxt9ZQ&s" alt="Passionfruit - Fusarium Wilt Image">
+    </div>
+</div>
+
+    <!-- Mulberry - Powdery Mildew -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Mulberry - Powdery Mildew</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Powdery mildew in mulberries, caused by the fungus <em>Sphaerotheca mors-uvae</em>, affects leaves, causing reduced photosynthesis and stunted growth.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>White, powdery fungal growth on the upper surface of leaves.<br>
+               Affected leaves may become deformed and curled.<br>
+               Infected branches can have reduced growth and fruit yield.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Apply sulfur-based fungicides or systemic fungicides like myclobutanil.<br>
+               Prune infected branches and remove affected leaves.<br>
+               Increase spacing between trees to improve air circulation and reduce humidity.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="hhttps://www.researchgate.net/publication/318274036/figure/fig1/AS:11431281257808217@1719899302918/Powdery-Mildew-infected-mulberry-leaves.tif" alt="Mulberry - Powdery Mildew Image">
+    </div>
+</div>
+
+    <!-- Kiwifruit - Bacterial Canker -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Kiwifruit - Bacterial Canker</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Bacterial canker, caused by <em>Pseudomonas syringae pv. actinidiae</em>, affects kiwifruit vines, causing dieback, reduced fruit production, and premature fruit drop.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Water-soaked lesions on leaves and stems, turning brown or black.<br>
+               Canker lesions on woody stems that lead to dieback.<br>
+               Reduced fruit size and quality, with premature fruit drop.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Prune and destroy infected plant material.<br>
+               Apply copper-based bactericides during the dormant period.<br>
+               Practice good orchard sanitation and control insect vectors to limit bacterial spread.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR60mzFze_AVIWbsfK4tgcVr6MU3SnXhgU0hg&s" alt="Kiwifruit - Bacterial Canker Image">
+    </div>
+</div>
+
+    <!-- Cantaloupe - Powdery Mildew -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Cantaloupe - Powdery Mildew</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Powdery mildew in cantaloupes, caused by the fungus <em>Leveillula taurica</em>, affects leaves and stems, leading to stunted growth and reduced fruit quality.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>White, powdery fungal growth on the upper side of leaves.<br>
+               Affected leaves may become deformed and curl.<br>
+               Poor fruit development and reduced marketable yield in severe cases.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Apply fungicides such as sulfur or myclobutanil at the first sign of infection.<br>
+               Improve air circulation and avoid overhead irrigation.<br>
+               Remove and destroy infected plant material to prevent further spread.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://www.gardendesign.com/pictures/images/400x320Exact_0x0/site_3/powdery-mildew-powdery-mildew-on-squash-leaf-shutterstock-com_13365.jpg" alt="Cantaloupe - Powdery Mildew Image">
+    </div>
+</div>
+
+    <!-- Blueberry - Mummy Berry Disease -->
+<div class="disease-box">
+    <div class="text-content">
+        <div class="disease-name">Blueberry - Mummy Berry Disease</div>
+        <div class="section">
+            <h3>Details</h3>
+            <p>Mummy berry disease, caused by the fungus <em>Monilinia vaccinii-corymbosi</em>, affects blueberries, leading to fruit rot and reduced yield.</p>
+        </div>
+        <div class="section">
+            <h3>Symptoms</h3>
+            <p>Blossoms wilt and die, leaving a grayish-brown mass.<br>
+               Infected fruit turns into mummified berries, which may remain attached to the plant.<br>
+               Premature fruit drop and reduced quality of the remaining fruit.</p>
+        </div>
+        <div class="section">
+            <h3>Treatment</h3>
+            <p>Apply fungicides such as myclobutanil or copper-based products.<br>
+               Remove and destroy mummified berries and infected plant material.<br>
+               Use resistant blueberry varieties and practice proper field sanitation.</p>
+        </div>
+    </div>
+    <div class="image-container">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRphWN9wemYZGyv39JrnwC9fAESQ4tE3QSxGA&s" alt="Blueberry - Mummy Berry Disease Image">
+    </div>
+</div>
+</div>
+</body>
+    
+</div>
+</body>
+</html>
