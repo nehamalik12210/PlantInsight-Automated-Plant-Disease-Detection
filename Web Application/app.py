@@ -7,15 +7,14 @@ import logging
 # Initialize Flask app
 app = Flask(__name__)
 
-# Configuration
+# CONFIGURATION
 UPLOAD_FOLDER = 'static/upload/'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
-
-# URL of your Hugging Face space API
-# IMPORTANT: You will need to replace this with your actual Hugging Face URL later
-HUGGING_FACE_API_URL = 'http://127.0.0.1:7860/predict_api'
-
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+# IMPORTANT: Update this URL to your actual Hugging Face Space URL
+HUGGING_FACE_API_URL = 'https://neha12210-plant-insight-api.hf.space/predict_api'
+HF_TOKEN = os.getenv("HF_TOKEN") 
 
 # Ensure upload folder exists
 if not os.path.exists(UPLOAD_FOLDER):
@@ -37,10 +36,14 @@ def classify_severity(confidence_score):
     else:
         return 'Severe', 'red'
 
-# Routes
+# --- MAIN ROUTES ---
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
+        if 'file' not in request.files:
+            return jsonify({'error': 'No file uploaded'})
+            
         file = request.files['file']
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
@@ -48,13 +51,13 @@ def index():
             file.save(file_path)
 
             try:
-                # Forward the image to Hugging Face API instead of running local TensorFlow
+                # Forward the image to your Hugging Face "Brain"
+                headers = {"Authorization": f"Bearer {HF_TOKEN}"}
                 with open(file_path, 'rb') as f:
                     files = {'file': (filename, f, file.mimetype)}
-                    response = requests.post(HUGGING_FACE_API_URL, files=files)
+                    response = requests.post(HUGGING_FACE_API_URL, headers=headers, files=files)
                 
-                response.raise_for_status() # Check for HTTP errors
-                
+                response.raise_for_status() 
                 result = response.json()
                 
                 if 'error' in result:
@@ -73,45 +76,13 @@ def index():
                     'image_url': url_for('static', filename='upload/' + filename)
                 })
 
-            except requests.exceptions.RequestException as e:
-                logging.error(f"Error communicating with Hugging Face API: {e}")
-                return jsonify({'error': "Failed to communicate with prediction server. Please ensure the Hugging Face API URL is correct."})
             except Exception as e:
-                logging.error(f"Unexpected error: {e}")
-                return jsonify({'error': "An unexpected error occurred during prediction."})
+                logging.error(f"Error: {e}")
+                return jsonify({'error': "API is warming up or connection failed. Please try again in 30s."})
 
     return render_template('index.html')
 
-@app.route('/predict', methods=['POST'])
-def predict():
-    data = request.get_json()
-    confidence_score = data.get('confidence', 0)
-
-    severity, color = classify_severity(confidence_score)
-
-    response = {
-        'severity': severity,
-        'color': color,
-        'confidence_score': confidence_score,
-        'message': f'Disease is classified as {severity} with a confidence score of {confidence_score}%.'
-    }
-    return jsonify(response)
-
-@app.route('/disease_diversity', methods=['POST'])
-def disease_diversity():
-    data = request.get_json()
-    confidence_score = data.get('confidence', 0)
-    
-    severity, color = classify_severity(confidence_score)
-    diversity_score = confidence_score
-
-    response = {
-        'severity': severity,
-        'color': color,
-        'diversity_score': diversity_score,
-        'message': f'Disease diversity is classified as {severity} with a diversity score of {diversity_score}%.'
-    }
-    return jsonify(response)
+# --- ADDITIONAL PROJECT ROUTES ---
 
 @app.route('/Contact_Us')
 def contact_us():
@@ -136,6 +107,31 @@ def upload():
 @app.route('/result/<filename>')
 def result(filename):
     return render_template('upload_success.html', filename=filename)
+
+# Logic for your specific JS-driven features
+@app.route('/predict', methods=['POST'])
+def predict():
+    data = request.get_json()
+    confidence_score = data.get('confidence', 0)
+    severity, color = classify_severity(confidence_score)
+    return jsonify({
+        'severity': severity,
+        'color': color,
+        'confidence_score': confidence_score,
+        'message': f'Disease is classified as {severity} with a confidence score of {confidence_score}%.'
+    })
+
+@app.route('/disease_diversity', methods=['POST'])
+def disease_diversity():
+    data = request.get_json()
+    confidence_score = data.get('confidence', 0)
+    severity, color = classify_severity(confidence_score)
+    return jsonify({
+        'severity': severity,
+        'color': color,
+        'diversity_score': confidence_score,
+        'message': f'Disease diversity is classified as {severity} with a diversity score of {confidence_score}%.'
+    })
 
 if __name__ == "__main__":
     app.run(debug=True)
