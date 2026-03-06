@@ -49,3 +49,8 @@ The model achieved an impressive performance:
 
 ### 6. Model Export
 The final trained weights are saved in the HDF5 format (`cnn_model.h5`), making them ready for deployment in the web application.
+
+### Update
+The CNN model is hosted on Hugging Face Spaces to handle high-memory inference using a Dockerized Flask API. You can view the model repository and the backend logic here: https://huggingface.co/spaces/Neha12210/plant-insight-api
+
+
