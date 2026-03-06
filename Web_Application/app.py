@@ -5,7 +5,10 @@ from werkzeug.utils import secure_filename
 import logging
 
 # Initialize Flask app
-app = Flask(__name__)
+# Force Flask to look for your specific folder names
+app = Flask(__name__, 
+            template_folder='Templates', 
+            static_folder='Static')
 
 # CONFIGURATION
 UPLOAD_FOLDER = 'static/upload/'
@@ -134,4 +137,5 @@ def disease_diversity():
     })
 
 if __name__ == "__main__":
+
     app.run(debug=True)
