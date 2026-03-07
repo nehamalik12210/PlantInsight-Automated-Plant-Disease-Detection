@@ -5,13 +5,15 @@ from werkzeug.utils import secure_filename
 import logging
 
 # Initialize Flask app
-# Force Flask to look for your specific folder names
+# IMPORTANT: These must match your GitHub folder names exactly (Capital T and S)
 app = Flask(__name__, 
             template_folder='Templates', 
             static_folder='Static')
 
 # CONFIGURATION
-UPLOAD_FOLDER = 'static/upload/'
+# Using absolute paths ensures Render finds the folder inside 'Web Application'
+basedir = os.path.abspath(os.path.dirname(__file__))
+UPLOAD_FOLDER = os.path.join(basedir, 'Static', 'upload')
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -21,7 +23,7 @@ HF_TOKEN = os.getenv("HF_TOKEN")
 
 # Ensure upload folder exists
 if not os.path.exists(UPLOAD_FOLDER):
-    os.makedirs(UPLOAD_FOLDER)
+    os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # Setup logging
 logging.basicConfig(level=logging.INFO)
@@ -81,7 +83,7 @@ def index():
 
             except Exception as e:
                 logging.error(f"Error: {e}")
-                return jsonify({'error': "API is warming up or connection failed. Please try again in 30s."})
+                return jsonify({'error': "The Brain is warming up. Please try again in 30 seconds."})
 
     return render_template('index.html')
 
@@ -121,21 +123,8 @@ def predict():
         'severity': severity,
         'color': color,
         'confidence_score': confidence_score,
-        'message': f'Disease is classified as {severity} with a confidence score of {confidence_score}%.'
-    })
-
-@app.route('/disease_diversity', methods=['POST'])
-def disease_diversity():
-    data = request.get_json()
-    confidence_score = data.get('confidence', 0)
-    severity, color = classify_severity(confidence_score)
-    return jsonify({
-        'severity': severity,
-        'color': color,
-        'diversity_score': confidence_score,
-        'message': f'Disease diversity is classified as {severity} with a diversity score of {confidence_score}%.'
+        'message': f'Disease is classified as {severity}.'
     })
 
 if __name__ == "__main__":
-
     app.run(debug=True)
